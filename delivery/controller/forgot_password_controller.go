@@ -46,10 +46,10 @@ func (fpc *ForgotPasswordController) ForgotPassword(c *gin.Context) {
 
 func (fpc *ForgotPasswordController) ResetPassword(c *gin.Context) {
 	var request struct {
-		Email       string `json:"email"`
-		OTPValue    string `json:"otp_value"`
 		NewPassword string `json:"new_password"`
 	}
+	Email := c.Query("email")
+	OTPValue := c.Query("otp")
 
 	if err := c.BindJSON(&request); err != nil {
 		c.JSON(http.StatusBadRequest, domain.Response{
@@ -60,7 +60,7 @@ func (fpc *ForgotPasswordController) ResetPassword(c *gin.Context) {
 		return
 	}
 
-	err := fpc.ForgotPasswordUsecase.ResetPassword(context.Background(), request.Email, request.OTPValue, request.NewPassword)
+	err := fpc.ForgotPasswordUsecase.ResetPassword(context.Background(), Email, OTPValue, request.NewPassword)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, domain.Response{
 			Err:     err,

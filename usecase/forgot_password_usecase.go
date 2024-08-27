@@ -102,7 +102,12 @@ func (fpu *forgotPasswordUsecase) SendEmail(email, otpValue, smtpUsername, smtpP
 	to := []string{email}
 	smtpHost := "smtp.gmail.com"
 	smtpPort := "587"
-	message := []byte("Your OTP is " + otpValue)
+	message := []byte("From: " + from + "\r\n" +
+    "To: " + to[0] + "\r\n" + // assuming `to` is a slice with one recipient
+    "Subject: Email Verification\r\n" +
+    "\r\n" +
+    "Send a post request using this link to verify your email: http://localhost:8080/password-update?email=" + email+"&otp="+otpValue)
+
 	auth := smtp.PlainAuth("", from, password, smtpHost)
 	return smtp.SendMail(smtpHost+":"+smtpPort, auth, from, to, message)
 }
