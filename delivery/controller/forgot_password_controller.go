@@ -2,8 +2,8 @@ package controller
 
 import (
 	"context"
-	"load/config"
-	"load/domain"
+	"loan/config"
+	"loan/domain"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

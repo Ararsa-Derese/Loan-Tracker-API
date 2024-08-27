@@ -3,7 +3,7 @@
 package mocks
 
 import (
-	database "load/database"
+	database "loan/database"
 
 	mock "github.com/stretchr/testify/mock"
 )

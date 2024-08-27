@@ -2,9 +2,9 @@ package controller
 
 import (
 	"errors"
-	"load/config"
-	"load/domain"
-	"load/internal/userutil"
+	"loan/config"
+	"loan/domain"
+	"loan/internal/userutil"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -110,8 +110,7 @@ func (sc *SignupController) Token(c *gin.Context, user domain.AuthSignup, userID
 		c.JSON(http.StatusBadRequest, domain.Response{
 			Err:     err,
 			Message: err.Error(),
-
-	})
+		})
 		return
 	}
 	err = sc.SignupUsecase.SaveRefreshToken(c, RefreshToken, userID)
@@ -120,7 +119,7 @@ func (sc *SignupController) Token(c *gin.Context, user domain.AuthSignup, userID
 		c.JSON(http.StatusBadRequest, domain.Response{
 			Err:     err,
 			Message: err.Error(),
-	})
+		})
 		return
 	}
 	resp := domain.SignUpResponse{

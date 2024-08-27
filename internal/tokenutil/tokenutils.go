@@ -1,7 +1,7 @@
 package tokenutil
 
 import (
-	"load/domain"
+	"loan/domain"
 	"time"
 
 	jwt "github.com/golang-jwt/jwt/v4"

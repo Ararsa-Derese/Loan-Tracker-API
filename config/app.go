@@ -1,6 +1,6 @@
 package config
 
-import "load/database"
+import "loan/database"
 
 type Application struct {
 	Env   *Env

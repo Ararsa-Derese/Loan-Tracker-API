@@ -3,8 +3,8 @@ package main
 import (
 	"time"
 
-	"load/config"
-	route "load/delivery/route"
+	"loan/config"
+	route "loan/delivery/route"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,7 +16,6 @@ func main() {
 	env := app.Env
 	db := app.Mongo.Database(env.DBName)
 	defer app.CloseDBConnection()
-
 
 	timeout := time.Duration(env.ContextTimeout) * time.Second
 	gin := gin.Default()

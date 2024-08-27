@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"load/database"
-	"load/domain" // Add this line to import the missing package
+	"loan/database"
+	"loan/domain" // Add this line to import the missing package
 
 	"context"
 

@@ -1,11 +1,11 @@
 package controller
 
 import (
-	"load/config"
-	"load/domain"
+	"loan/config"
+	"loan/domain"
+	"loan/internal/tokenutil"
+	"loan/internal/userutil"
 	"net/http"
-	"load/internal/tokenutil"
-	"load/internal/userutil"
 
 	// "errors"
 	"time"
@@ -24,7 +24,7 @@ func (lc *LoginController) Login(c *gin.Context) {
 	var loginUser domain.AuthLogin
 	if err := c.ShouldBindJSON(&loginUser); err != nil {
 		c.JSON(http.StatusBadRequest, domain.Response{
-			Err: err,
+			Err:     err,
 			Message: err.Error(),
 		})
 		return
@@ -37,7 +37,7 @@ func (lc *LoginController) Login(c *gin.Context) {
 	user, err := lc.LoginUsecase.AuthenticateUser(c, &loginUser)
 	if err != nil {
 		c.JSON(http.StatusUnauthorized, domain.Response{
-			Err: err,
+			Err:     err,
 			Message: err.Error(),
 		})
 		return
@@ -45,8 +45,8 @@ func (lc *LoginController) Login(c *gin.Context) {
 
 	accessToken, err := lc.LoginUsecase.CreateAccessToken(user, lc.Env.AccessTokenSecret, lc.Env.AccessTokenExpiryHour)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError,domain.Response{
-			Err: err,
+		c.JSON(http.StatusInternalServerError, domain.Response{
+			Err:     err,
 			Message: err.Error(),
 		})
 		return
@@ -55,7 +55,7 @@ func (lc *LoginController) Login(c *gin.Context) {
 	refreshToken, err := lc.LoginUsecase.CreateRefreshToken(user, lc.Env.RefreshTokenSecret, lc.Env.RefreshTokenExpiryHour)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, domain.Response{
-			Err: err,
+			Err:     err,
 			Message: err.Error(),
 		})
 		return
@@ -71,7 +71,7 @@ func (lc *LoginController) Login(c *gin.Context) {
 	err = lc.LoginUsecase.SaveRefreshToken(c, &tkn)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, domain.Response{
-			Err: err,
+			Err:     err,
 			Message: err.Error(),
 		})
 		return
@@ -85,7 +85,7 @@ func (lc *LoginController) Login(c *gin.Context) {
 
 	c.JSON(http.StatusOK, domain.Response{
 		Message: "Logged in Succefully",
-		Data: resp,
+		Data:    resp,
 	})
 }
 
@@ -97,7 +97,7 @@ func (lc *LoginController) RefreshTokenHandler(c *gin.Context) {
 
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, domain.Response{
-			Err: err,
+			Err:     err,
 			Message: err.Error(),
 		})
 		return
@@ -105,8 +105,8 @@ func (lc *LoginController) RefreshTokenHandler(c *gin.Context) {
 	claims, err := tokenutil.VerifyToken(req.RefreshToken)
 
 	if err != nil {
-		c.JSON(http.StatusUnauthorized,domain.Response{
-			Err: err,
+		c.JSON(http.StatusUnauthorized, domain.Response{
+			Err:     err,
 			Message: err.Error(),
 		})
 		return
@@ -114,7 +114,7 @@ func (lc *LoginController) RefreshTokenHandler(c *gin.Context) {
 	_, err = lc.LoginUsecase.CheckRefreshToken(c, req.RefreshToken)
 	if err != nil {
 		c.JSON(http.StatusUnauthorized, domain.Response{
-			Err: err,
+			Err:     err,
 			Message: err.Error(),
 		})
 		return
@@ -128,7 +128,7 @@ func (lc *LoginController) RefreshTokenHandler(c *gin.Context) {
 	newaccessToken, err := tokenutil.CreateAccessToken(&user, lc.Env.AccessTokenSecret, lc.Env.AccessTokenExpiryHour)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, domain.Response{
-			Err: err,
+			Err:     err,
 			Message: err.Error(),
 		})
 		return
@@ -136,6 +136,6 @@ func (lc *LoginController) RefreshTokenHandler(c *gin.Context) {
 
 	c.JSON(http.StatusOK, domain.Response{
 		Message: "New access Created",
-		Data: map[string]string{"access_token": newaccessToken},
+		Data:    map[string]string{"access_token": newaccessToken},
 	})
 }

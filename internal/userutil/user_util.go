@@ -5,7 +5,7 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
-	"load/domain"
+	"loan/domain"
 	"regexp"
 
 	"github.com/xlzd/gotp"

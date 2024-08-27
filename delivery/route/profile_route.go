@@ -1,14 +1,14 @@
 package route
 
 import (
-	"load/config"
-	"load/database"
-	"load/delivery/controller"
+	"loan/config"
+	"loan/database"
+	"loan/delivery/controller"
 
-	// "load/delivery/middleware"
-	"load/domain"
-	"load/repository"
-	"load/usecase"
+	// "loan/delivery/middleware"
+	"loan/domain"
+	"loan/repository"
+	"loan/usecase"
 	"time"
 
 	"github.com/gin-gonic/gin"

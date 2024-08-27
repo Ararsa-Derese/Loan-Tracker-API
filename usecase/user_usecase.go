@@ -3,8 +3,8 @@ package usecase
 import (
 	"context"
 	"errors"
-	"load/domain"
-	"load/internal/userutil"
+	"loan/domain"
+	"loan/internal/userutil"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -191,3 +191,6 @@ func (uc *UserUsecase) DemoteUser(c context.Context, id primitive.ObjectID, clai
 	user.Role = "user"
 	return uc.userRepository.UpdateUser(ctx, user)
 }
+
+
+

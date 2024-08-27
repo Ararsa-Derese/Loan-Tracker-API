@@ -1,7 +1,7 @@
 package usecase
 
 import (
-	"load/domain"
+	"loan/domain"
 
 	"context"
 	"errors"
