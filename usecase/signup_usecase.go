@@ -177,7 +177,12 @@ func (su *signupUsecase) SendEmail(email string, otpValue, smtpusername, smtppas
 		smtpHost := "smtp.gmail.com"
 		smtpPort := "587"
 
-		message := []byte("Your OTP is " + otpValue)
+		message := []byte("From: " + from + "\r\n" +
+    "To: " + to[0] + "\r\n" + // assuming `to` is a slice with one recipient
+    "Subject: Email Verification\r\n" +
+    "\r\n" +
+    "Click the link to verify your email: http://localhost:8080/users/verify-email?email=" + email+"&otp="+otpValue)
+
 
 		auth := smtp.PlainAuth("", from, password, smtpHost)
 

@@ -64,13 +64,10 @@ func (sc *SignupController) Signup(c *gin.Context) {
 // VerifyOTP verifies the OTP
 func (sc *SignupController) VerifyOTP(c *gin.Context) {
 	var otp domain.OTPRequest
-	if err := c.ShouldBindJSON(&otp); err != nil {
-		c.JSON(http.StatusBadRequest, domain.Response{
-			Err:     err,
-			Message: err.Error(),
-		})
-		return
-	}
+	email := c.Query("email")
+	otpValue := c.Query("otp")
+	otp.Email = email
+	otp.Value = otpValue
 	otpresponse, err := sc.SignupUsecase.VerifyOTP(c, &otp)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, domain.Response{
