@@ -1,12 +1,12 @@
 package route
 
 import (
-	"load/config"
-	"load/database"
-	"load/delivery/controller"
-	"load/domain"
-	"load/repository"
-	"load/usecase"
+	"loan/config"
+	"loan/database"
+	"loan/delivery/controller"
+	"loan/domain"
+	"loan/repository"
+	"loan/usecase"
 
 	// "go/token"
 	"time"

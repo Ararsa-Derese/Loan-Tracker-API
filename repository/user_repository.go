@@ -2,8 +2,8 @@ package repository
 
 import (
 	"context"
-	"load/database"
-	"load/domain"
+	"loan/database"
+	"loan/domain"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"

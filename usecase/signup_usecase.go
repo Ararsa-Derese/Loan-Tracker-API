@@ -3,9 +3,9 @@ package usecase
 import (
 	"context"
 	"errors"
-	"load/domain"
-	"load/internal/tokenutil"
-	"load/internal/userutil"
+	"loan/domain"
+	"loan/internal/tokenutil"
+	"loan/internal/userutil"
 	"net/smtp"
 	"time"
 
@@ -178,11 +178,10 @@ func (su *signupUsecase) SendEmail(email string, otpValue, smtpusername, smtppas
 		smtpPort := "587"
 
 		message := []byte("From: " + from + "\r\n" +
-    "To: " + to[0] + "\r\n" + // assuming `to` is a slice with one recipient
-    "Subject: Email Verification\r\n" +
-    "\r\n" +
-    "Click the link to verify your email: http://localhost:8080/users/verify-email?email=" + email+"&otp="+otpValue)
-
+			"To: " + to[0] + "\r\n" + // assuming `to` is a slice with one recipient
+			"Subject: Email Verification\r\n" +
+			"\r\n" +
+			"Click the link to verify your email: http://localhost:8080/users/verify-email?email=" + email + "&otp=" + otpValue)
 
 		auth := smtp.PlainAuth("", from, password, smtpHost)
 

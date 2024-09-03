@@ -3,9 +3,9 @@ package repository_test
 import (
 	"context"
 	"errors"
-	"load/database/mocks"
-	"load/domain"
-	"load/repository"
+	"loan/database/mocks"
+	"loan/domain"
+	"loan/repository"
 	"testing"
 
 	"github.com/stretchr/testify/mock"

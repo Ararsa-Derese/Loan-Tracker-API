@@ -1,8 +1,8 @@
 package controller
 
 import (
-	"load/config"
-	"load/domain"
+	"loan/config"
+	"loan/domain"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -18,7 +18,7 @@ type ProfileController struct {
 func (pc *ProfileController) GetProfile(c *gin.Context) {
 	var profile domain.Profile
 	if err := c.ShouldBind(&profile); err != nil {
-		c.JSON(http.StatusBadRequest,domain.Response{
+		c.JSON(http.StatusBadRequest, domain.Response{
 			Err:     err,
 			Message: err.Error(),
 		})

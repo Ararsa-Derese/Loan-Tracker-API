@@ -1,11 +1,12 @@
 package middleware
 
 import (
-	"load/internal/tokenutil"
+	"loan/internal/tokenutil"
 	// "fmt"
+	"loan/domain"
 	"net/http"
 	"strings"
-	"load/domain"
+
 	"github.com/gin-gonic/gin"
 )
 

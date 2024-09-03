@@ -1,12 +1,12 @@
 package route
 
 import (
-	"load/config"
-	"load/database"
-	"load/delivery/controller"
-	"load/domain"
-	"load/repository"
-	"load/usecase"
+	"loan/config"
+	"loan/database"
+	"loan/delivery/controller"
+	"loan/domain"
+	"loan/repository"
+	"loan/usecase"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -24,5 +24,5 @@ func NewSignupRouter(env *config.Env, timeout time.Duration, db database.Databas
 	}
 	group.POST("/register", sc.Signup)
 	group.GET("/verify-email", sc.VerifyOTP)
-	
+
 }

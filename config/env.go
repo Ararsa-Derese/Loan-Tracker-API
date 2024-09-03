@@ -2,6 +2,7 @@ package config
 
 import (
 	"log"
+
 	"github.com/spf13/viper"
 )
 
@@ -21,10 +22,11 @@ type Env struct {
 	SMTPPort               string `mapstructure:"SMTPPort"`
 	GoogleClientID         string `mapstructure:"GOOGLE_CLIENT_ID"`
 	GoogleClientSecret     string `mapstructure:"GOOGLE_CLIENT_SECRET"`
-  AIAPIKey 			         string `mapstructure:"AIAPIKey"`
+	AIAPIKey               string `mapstructure:"AIAPIKey"`
 	RootUsername           string `mapstructure:"ROOT_USERNAME"`
 	RootPassword           string `mapstructure:"ROOT_PASSWORD"`
 }
+
 func NewEnv() *Env {
 	env := Env{}
 	viper.SetConfigFile(".env")
@@ -36,7 +38,7 @@ func NewEnv() *Env {
 
 	err = viper.Unmarshal(&env)
 	if err != nil {
-		log.Fatal("Environment can't be loaded: ", err)
+		log.Fatal("Environment can't be loaned: ", err)
 	}
 
 	if env.AppEnv == "development" {

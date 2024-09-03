@@ -1,11 +1,11 @@
 package route
 
 import (
-	"load/config"
-	"load/database"
-	"load/delivery/controller"
-	"load/repository"
-	"load/usecase"
+	"loan/config"
+	"loan/database"
+	"loan/delivery/controller"
+	"loan/repository"
+	"loan/usecase"
 	"time"
 
 	"github.com/gin-gonic/gin"

@@ -3,9 +3,9 @@ package usecase
 import (
 	"context"
 	"errors"
-	"load/domain"
-	"load/internal/tokenutil"
-	"load/internal/userutil"
+	"loan/domain"
+	"loan/internal/tokenutil"
+	"loan/internal/userutil"
 	"time"
 )
 

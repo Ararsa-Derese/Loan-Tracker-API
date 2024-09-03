@@ -3,8 +3,8 @@ package usecase
 import (
 	"context"
 	"errors"
-	"load/domain"
-	"load/internal/userutil"
+	"loan/domain"
+	"loan/internal/userutil"
 	"net/smtp"
 	"time"
 )
@@ -103,10 +103,10 @@ func (fpu *forgotPasswordUsecase) SendEmail(email, otpValue, smtpUsername, smtpP
 	smtpHost := "smtp.gmail.com"
 	smtpPort := "587"
 	message := []byte("From: " + from + "\r\n" +
-    "To: " + to[0] + "\r\n" + // assuming `to` is a slice with one recipient
-    "Subject: Email Verification\r\n" +
-    "\r\n" +
-    "Send a post request using this link to verify your email: http://localhost:8080/password-update?email=" + email+"&otp="+otpValue)
+		"To: " + to[0] + "\r\n" + // assuming `to` is a slice with one recipient
+		"Subject: Email Verification\r\n" +
+		"\r\n" +
+		"Send a post request using this link to verify your email: http://localhost:8080/password-update?email=" + email + "&otp=" + otpValue)
 
 	auth := smtp.PlainAuth("", from, password, smtpHost)
 	return smtp.SendMail(smtpHost+":"+smtpPort, auth, from, to, message)

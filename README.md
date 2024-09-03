@@ -1,8 +1,4 @@
-# Blog Starter Project
-
-## Introduction
-
-The **Blog Starter Project** is a backend API designed to power a comprehensive blog platform. This project provides a foundation for creating, managing, and interacting with blog content. It includes features like user authentication, blog management, advanced search and filtering, and AI-driven content suggestions.
+# Loan API Project
 
 ## Features
 
@@ -73,3 +69,7 @@ Before you begin, ensure you have the following installed on your machine:
     ```sh
     go run cmd/main.go
     ```
+
+
+Here is the postman Documentation
+(https://documenter.getpostman.com/view/30253109/2sAXjGduYC)

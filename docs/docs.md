@@ -1,4 +1,3 @@
-
 ## Functional Requirements
 
 ### 1. User Management

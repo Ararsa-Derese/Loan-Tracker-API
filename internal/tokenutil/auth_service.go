@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"fmt"
-	"load/domain"
-	"load/repository"
+	"loan/domain"
+	"loan/repository"
 
 	"github.com/golang-jwt/jwt/v4"
 )
